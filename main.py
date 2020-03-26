@@ -1,8 +1,8 @@
-import argparse
+from argparse import ArgumentParser
 from Shunting_yard import Shunting_yard
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
+    parser = ArgumentParser()
     parser.add_argument('expression', help='arithmetic expression', nargs='+')
     args = parser.parse_args()
 
