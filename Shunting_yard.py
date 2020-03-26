@@ -4,6 +4,9 @@ from Stack import Stack
 from functions import *
 
 class Shunting_yard:
+    """
+    Реализация алгоритма сортировочной станции.
+    """
     def __init__(self, expression):
         self.operator_stack = Stack()
         self.postfix = []
