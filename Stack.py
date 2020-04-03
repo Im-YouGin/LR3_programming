@@ -2,6 +2,7 @@ class Stack:
     def __init__(self):
         self.container = []
 
+
     @property
     def empty(self):
         return self.container == []
@@ -10,7 +11,9 @@ class Stack:
         self.container.append(element)
 
     def pop(self):
-        return self.container.pop()
+        element = self.container[-1]
+        del self.container[-1]
+        return element
 
     @property
     def top(self):
