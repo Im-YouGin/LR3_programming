@@ -8,7 +8,7 @@ class Shunting_yard:
     Реализация алгоритма сортировочной станции.
     """
     def __init__(self, expression):
-        self.operator_stack = Stack()
+        self.operator_stack = Stack(size=500)
         self.postfix = []
         self.expression = expression
         self.operators = ['+', '-', '*', '/', '^', '#', '!']
@@ -62,7 +62,7 @@ class Shunting_yard:
         return self.postfix
 
     def eval_postfix(self):
-        stack = Stack()
+        stack = Stack(size=200)
 
         for token in self.postfix:
 
