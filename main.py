@@ -8,11 +8,11 @@ if __name__ == "__main__":
 
     expression = ''.join(args.expression)
     replaced = expression.replace('**', '^')
-    check = eval(expression)
+    # check = eval(expression)
 
     yard = Shunting_yard(replaced)
     yard.replace_unary_minus()
     yard.to_postfix()
 
     print(f'Result: {yard.eval_postfix()}')
-    print(f'To check: {check}')
+    # print(f'To check: {check}')

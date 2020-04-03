@@ -1,5 +1,7 @@
+from math import factorial
 def presedence(operator):
-    operator_dct = {3: ('^','#'),
+    operator_dct = {4:'!',
+                    3: ('^','#'),
                     2:('*','/'),
                     1:('+', '-')}
 
@@ -8,7 +10,7 @@ def presedence(operator):
             return key
 
 def association(operator):
-    operator_dct = {'right': ('^', '#'),
+    operator_dct = {'right': ('^', '#', '!'),
                     'left': ('*', '/', '+', '-')}
 
     for key, value in operator_dct.items():

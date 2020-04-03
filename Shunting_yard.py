@@ -11,11 +11,10 @@ class Shunting_yard:
         self.operator_stack = Stack()
         self.postfix = []
         self.expression = expression
-        self.operators = ['+', '-', '*', '/', '^', '#']
+        self.operators = ['+', '-', '*', '/', '^', '#', '!']
 
     def replace_unary_minus(self):
-        tokens = re.findall("[+/*()^-]|\d+", self.expression)
-
+        tokens = re.findall("[+/*/!()^-]|\d+", self.expression)
         for ind, token in enumerate(tokens):
             if token == '-' and tokens[ind - 1] == '(':
                 tokens[ind] = '#'
@@ -64,22 +63,23 @@ class Shunting_yard:
 
     def eval_postfix(self):
         stack = Stack()
-        i = 0
-        post_cycle = cycle(self.postfix)
-        next_token = next(post_cycle)
 
-        while i != len(self.postfix):
-            i += 1
-            token, next_token = next_token, next(post_cycle)
-            # for token, next_token in zip(self.postfix[:-1], self.postfix[:]):
+        for token in self.postfix:
+
             if token.isalnum():
                 stack.push(token)
 
             elif token in self.operators:
                 if token == '#':
                     top = stack.pop().replace('(', '').replace(')', '')
-                    # and (next_token in self.operators or next_token.isdigit())
+
                     stack.push(f'({str((-1) * float(top))})')
+                    continue
+
+                if token == '!':
+                    top = stack.pop().replace('(', '').replace(')', '')
+
+                    stack.push(f'({factorial(float(top))})')
                     continue
 
                 right_operand = stack.pop()
